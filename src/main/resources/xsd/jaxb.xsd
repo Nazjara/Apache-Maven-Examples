@@ -6,7 +6,7 @@
     <xsd:annotation>
         <xsd:appinfo>
             <jaxb:schemaBindings>
-                <jaxb:package name="com.nazjara"/>
+                <jaxb:package name="com.nazjara.jaxb"/>
             </jaxb:schemaBindings>
         </xsd:appinfo>
     </xsd:annotation>

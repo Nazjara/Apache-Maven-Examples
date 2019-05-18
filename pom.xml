@@ -23,6 +23,8 @@
             <artifactId>commons-lang3</artifactId>
             <version>3.9</version>
         </dependency>
+
+        <!-- to convert XSD to Java -->
         <dependency>
             <groupId>javax.xml.bind</groupId>
             <artifactId>jaxb-api</artifactId>
@@ -37,6 +39,13 @@
             <groupId>com.sun.xml.bind</groupId>
             <artifactId>jaxb-impl</artifactId>
             <version>${jaxb.version}</version>
+        </dependency>
+
+        <!-- to convert JSON to Java -->
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>2.9.8</version>
         </dependency>
     </dependencies>
 
@@ -70,10 +79,33 @@
                 <artifactId>maven-site-plugin</artifactId>
                 <version>3.7.1</version>
             </plugin>
+
+            <!-- https://github.com/highsource/maven-jaxb2-plugin -->
             <plugin>
                 <groupId>org.jvnet.jaxb2.maven2</groupId>
                 <artifactId>maven-jaxb2-plugin</artifactId>
                 <version>0.14.0</version>
+                <configuration>
+                    <schemaDirectory>${basedir}/src/main/resources/xsd</schemaDirectory>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <!-- https://joelittlejohn.github.io/jsonschema2pojo/site/1.0.1/generate-mojo.html -->
+            <plugin>
+                <groupId>org.jsonschema2pojo</groupId>
+                <artifactId>jsonschema2pojo-maven-plugin</artifactId>
+                <version>1.0.1</version>
+                <configuration>
+                    <sourceDirectory>${basedir}/src/main/resources/json</sourceDirectory>
+                    <targetPackage>com.nazjara.json</targetPackage>
+                </configuration>
                 <executions>
                     <execution>
                         <goals>
