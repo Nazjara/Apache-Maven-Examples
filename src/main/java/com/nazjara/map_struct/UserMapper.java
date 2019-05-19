@@ -1,4 +1,4 @@
-package map_struct;
+package com.nazjara.map_struct;
 
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;

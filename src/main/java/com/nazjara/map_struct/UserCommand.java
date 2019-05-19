@@ -1,6 +1,6 @@
-package map_struct;
+package com.nazjara.map_struct;
 
-public class User {
+public class UserCommand {
     private String firstName;
     private String lastName;
     private String email;
