@@ -1,5 +1,6 @@
 package com.nazjara.controller;
 
+import com.nazjara.model.ShippingAddress;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -14,5 +15,10 @@ public class ExampleController {
         Map<String, Object> map = new HashMap<>();
         map.put("Hello", "World");
         return map;
+    }
+
+    @GetMapping("/shipping-address")
+    public ShippingAddress getShippingAddress() {
+        return new ShippingAddress();
     }
 }
