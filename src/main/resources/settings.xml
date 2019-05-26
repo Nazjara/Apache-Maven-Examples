@@ -37,6 +37,16 @@
                 </httpConfiguration>
             </configuration>
         </server>
+
+<!--       Get encrypted password from https://packagecloud.io/ in 'API Token' tab -->
+        <server>
+            <id>packagecloud.release</id>
+            <password><!-- encrypted password --></password>
+        </server>
+        <server>
+            <id>packagecloud.snapshot</id>
+            <password><!-- encrypted password --></password>
+        </server>
     </servers>
 
     <!-- Active profiles with additional repositories used in all projects -->
