@@ -1,0 +1,5 @@
+<!-- User 'mvn &#45;&#45;encrypt-master-password <password>' to get encrypted master password -->
+
+<settingsSecurity>
+    <master>{<!-- set encrypted password -->}</master>
+</settingsSecurity>

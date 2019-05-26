@@ -13,7 +13,33 @@
         </mirror>
     </mirrors>
 
-    <!-- Active profiles with additional repositories -->
+    <servers>
+        <!-- Registration is required to use oracle repository -->
+        <server>
+            <id>maven.oracle.com</id>
+            <username><!-- set username --></username>
+            <password>{<!-- set encrypted password using 'mvn &#45;&#45;encrypt-password' after master password is set -->}</password>
+            <configuration>
+                <basicAuthScope>
+                    <host>ANY</host>
+                    <port>ANY</port>
+                    <realm>OAM 11g</realm>
+                </basicAuthScope>
+                <httpConfiguration>
+                    <all>
+                        <params>
+                            <property>
+                                <name>http.protocol.allow-circular-redirects</name>
+                                <value>%b,true</value>
+                            </property>
+                        </params>
+                    </all>
+                </httpConfiguration>
+            </configuration>
+        </server>
+    </servers>
+
+    <!-- Active profiles with additional repositories used in all projects -->
     <profiles>
         <profile>
             <id>jboss</id>
