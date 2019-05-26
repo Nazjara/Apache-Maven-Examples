@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<settings xmlns="http://maven.apache.org/SETTINGS/1.0.0"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0 http://maven.apache.org/xsd/settings-1.0.0.xsd">
+
+    <!-- Mirror for maven central -->
+    <mirrors>
+        <mirror>
+            <id>UK</id>
+            <name>UK Central</name>
+            <url>http://uk.maven.org/maven2</url>
+            <mirrorOf>central</mirrorOf>
+        </mirror>
+    </mirrors>
+
+    <!-- Active profiles with additional repositories -->
+    <profiles>
+        <profile>
+            <id>jboss</id>
+            <repositories>
+                <repository>
+                    <id>redhat-ga</id>
+                    <url>https://maven.repository.redhat.com/ga/</url>
+                    <snapshots>
+                        <enabled>false</enabled>
+                    </snapshots>
+                </repository>
+            </repositories>
+        </profile>
+        <profile>
+            <id>spring</id>
+            <repositories>
+                <repository>
+                    <id>repository.spring.milestone</id>
+                    <name>Spring Milestone Repository</name>
+                    <url>http://repo.spring.io/milestone</url>
+                    <snapshots>
+                        <enabled>false</enabled>
+                    </snapshots>
+                </repository>
+                <repository>
+                    <id>repository.spring.snapshot</id>
+                    <name>Spring Snapshot Repository</name>
+                    <url>http://repo.spring.io/snapshot</url>
+                    <snapshots>
+                        <enabled>true</enabled>
+                    </snapshots>
+                </repository>
+            </repositories>
+        </profile>
+    </profiles>
+
+    <activeProfiles>
+        <activeProfile>jboss</activeProfile>
+        <activeProfile>spring</activeProfile>
+    </activeProfiles>
+</settings>
