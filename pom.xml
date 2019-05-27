@@ -346,8 +346,8 @@
         </extensions>
     </build>
 
-    <!-- Registration is required -->
     <distributionManagement>
+        <!-- Registration is required -->
         <repository>
             <id>packagecloud.release</id>
             <url>packagecloud+https://packagecloud.io/nazjara/release</url>
@@ -356,6 +356,14 @@
             <id>packagecloud.snapshot</id>
             <url>packagecloud+https://packagecloud.io/nazjara/snapshot</url>
         </snapshotRepository>
+<!--        <repository>-->
+<!--            <id>nexus-release</id>-->
+<!--            <url>http://localhost:8081/repository/nexus-release/</url>-->
+<!--        </repository>-->
+<!--        <snapshotRepository>-->
+<!--            <id>nexus-snapshot</id>-->
+<!--            <url>http://localhost:8081/repository/nexus-snapshot/</url>-->
+<!--        </snapshotRepository>-->
     </distributionManagement>
 
     <reporting>
@@ -393,6 +401,22 @@
             <releases>
                 <enabled>true</enabled>
             </releases>
+        </repository>
+        <!-- Nexus needs to be installed for local usage -->
+        <!-- This setup is alternative to setup mirror for nexus group in settings.xml -->
+        <repository>
+            <id>nexus-snapshot</id>
+            <url>http://localhost:8081/repository/nexus-snapshot/</url>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
+        <repository>
+            <id>nexus-release</id>
+            <url>http://localhost:8081/repository/nexus-release/</url>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
         </repository>
     </repositories>
 </project>

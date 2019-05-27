@@ -3,13 +3,20 @@
           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
           xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0 http://maven.apache.org/xsd/settings-1.0.0.xsd">
 
-    <!-- Mirror for maven central -->
+    <!-- Mirrors for maven central -->
     <mirrors>
         <mirror>
             <id>UK</id>
             <name>UK Central</name>
             <url>http://uk.maven.org/maven2</url>
             <mirrorOf>central</mirrorOf>
+        </mirror>
+        <!-- This setup is alternative to setup nexus repositories in pom.xml -->
+        <mirror>
+            <id>central</id>
+            <name>central</name>
+            <url>http://localhost:8081/repository/nexus-group/</url>
+            <mirrorOf>*</mirrorOf>
         </mirror>
     </mirrors>
 
@@ -38,7 +45,7 @@
             </configuration>
         </server>
 
-<!--       Get encrypted password from https://packagecloud.io/ in 'API Token' tab -->
+        <!-- Get encrypted password from https://packagecloud.io/ in 'API Token' tab -->
         <server>
             <id>packagecloud.release</id>
             <password><!-- encrypted password --></password>
@@ -46,6 +53,16 @@
         <server>
             <id>packagecloud.snapshot</id>
             <password><!-- encrypted password --></password>
+        </server>
+        <server>
+            <id>nexus-snapshot</id>
+            <username>admin</username>
+            <password>admin123</password>
+        </server>
+        <server>
+            <id>nexus-release</id>
+            <username>admin</username>
+            <password>admin123</password>
         </server>
     </servers>
 
