@@ -17,6 +17,7 @@
         <maven.compiler.target>${java.version}</maven.compiler.target>
         <org.mapstruct.version>1.3.0.Final</org.mapstruct.version>
         <junit5.version>5.5.0-M1</junit5.version>
+        <TEST_HOST>localhost</TEST_HOST>
     </properties>
 
     <dependencies>
@@ -204,6 +205,9 @@
                 <configuration>
                     <!-- Sets the VM argument line used when unit tests are run. -->
                     <argLine>${surefireArgLine}</argLine>
+                    <environmentVariables>
+                        <TEST_HOST>${TEST_HOST}</TEST_HOST>
+                    </environmentVariables>
                 </configuration>
             </plugin>
 
@@ -346,26 +350,6 @@
         </extensions>
     </build>
 
-    <distributionManagement>
-        <!-- Registration is required -->
-        <repository>
-            <id>packagecloud.release</id>
-            <url>packagecloud+https://packagecloud.io/nazjara/release</url>
-        </repository>
-        <snapshotRepository>
-            <id>packagecloud.snapshot</id>
-            <url>packagecloud+https://packagecloud.io/nazjara/snapshot</url>
-        </snapshotRepository>
-<!--        <repository>-->
-<!--            <id>nexus-release</id>-->
-<!--            <url>http://localhost:8081/repository/nexus-release/</url>-->
-<!--        </repository>-->
-<!--        <snapshotRepository>-->
-<!--            <id>nexus-snapshot</id>-->
-<!--            <url>http://localhost:8081/repository/nexus-snapshot/</url>-->
-<!--        </snapshotRepository>-->
-    </distributionManagement>
-
     <reporting>
         <plugins>
             <!-- Requires maven-site-plugin version 3.7.1 + -->
@@ -419,4 +403,51 @@
             </snapshots>
         </repository>
     </repositories>
+
+    <profiles>
+        <!-- Extensions are not supported in profiles -->
+        <profile>
+            <id>packagecloud</id>
+            <distributionManagement>
+                <repository>
+                    <id>packagecloud.release</id>
+                    <url>packagecloud+https://packagecloud.io/nazjara/release</url>
+                </repository>
+                <snapshotRepository>
+                    <id>packagecloud.snapshot</id>
+                    <url>packagecloud+https://packagecloud.io/nazjara/snapshot</url>
+                </snapshotRepository>
+            </distributionManagement>
+<!--            <activation>-->
+<!--                <activeByDefault>true</activeByDefault>-->
+<!--            </activation>-->
+        </profile>
+        <profile>
+            <id>nexus</id>
+            <distributionManagement>
+                <!-- Registration is required-->
+                <repository>
+                    <id>nexus-release</id>
+                    <url>http://localhost:8081/repository/nexus-release/</url>
+                </repository>
+                <snapshotRepository>
+                    <id>nexus-snapshot</id>
+                    <url>http://localhost:8081/repository/nexus-snapshot/</url>
+                </snapshotRepository>
+            </distributionManagement>
+        </profile>
+        <!-- Override environment variables in profiles -->
+        <profile>
+            <id>test</id>
+            <properties>
+                <TEST_HOST>test.example.com</TEST_HOST>
+            </properties>
+        </profile>
+        <profile>
+            <id>uat</id>
+            <properties>
+                <TEST_HOST>uat.example.com</TEST_HOST>
+            </properties>
+        </profile>
+    </profiles>
 </project>
