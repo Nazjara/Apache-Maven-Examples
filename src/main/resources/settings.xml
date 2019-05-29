@@ -64,6 +64,12 @@
             <username>admin</username>
             <password>admin123</password>
         </server>
+
+        <server>
+            <id>github</id>
+            <username><!-- username --></username>
+            <password><!-- password --></password>
+        </server>
     </servers>
 
     <!-- Active profiles with additional repositories used in all projects -->
